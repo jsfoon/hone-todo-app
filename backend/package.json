@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "gen:types": "./sqlx-ts --config sqlxrc.json ./src/models"
+  },
+  "dependencies": {
+    "hono": "^4.0.5",
+    "postgres-pool": "^8.1.3",
+    "sqlx-ts": "^0.11.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

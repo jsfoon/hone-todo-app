@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16.2-alpine
+    restart: always
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+
+  migrate:
+    image: migrate/migrate:latest
+    volumes:
+      - ./backend/db/migrations:/migrations
+    # entrypoint: ls -la /migrations
+    command:
+      - -path=/migrations
+      - -database
+      - $DATABASE_URL
+      - up
+  backend:
+    image: todo-backend
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app
+      - backend_modules:/app/node_modules
+    ports:
+      - $BACKEND_PORT:$BACKEND_PORT
+    entrypoint: >
+      sh -c "bun install && bun dev"
+  frontend:
+    image: todo-frontend
+    build:
+      context: ./frontend
+    tty: true
+    volumes:
+      - ./frontend:/app
+      - frontend_modules:/app/node_modules
+    ports:
+      - $FRONTEND_PORT:$FRONTEND_PORT
+    entrypoint: >
+      sh -c "bun install && bun dev"
+
+volumes:
+  frontend_modules:
+  backend_modules:
+  postgres_data:
