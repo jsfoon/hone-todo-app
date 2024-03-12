@@ -1,12 +1,16 @@
 {
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "gen:types": "./sqlx-ts --config sqlxrc.json ./src/models"
+    "gen:types": "./sqlx-ts --config sqlxrc.json ./src/models",
+    "test": "bun test --coverage",
+    "test:watch": "bun test --coverage --watch"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.2.0",
     "hono": "^4.0.5",
     "postgres-pool": "^8.1.3",
-    "sqlx-ts": "^0.11.0"
+    "sqlx-ts": "^0.11.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/bun": "latest"

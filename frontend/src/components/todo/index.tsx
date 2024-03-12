@@ -23,7 +23,7 @@ export default function TodoList() {
         <div className="mx-auto max-w-sm space-y-2">
           {isPending && <div>Loading...</div>}
           {error && <div>{error.message}</div>}
-          <ul className="dark:text-white grid gap-2">
+          <ul className="dark:text-white grid gap-2" data-testid="todo-list">
             {data?.todos.map((todo) => (
               <Todo key={todo.id} todo={todo} />
             ))}

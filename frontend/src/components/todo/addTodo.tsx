@@ -32,6 +32,7 @@ export default function AddTodo() {
     <div className="mx-auto max-w-sm space-y-2">
       <div className="text-gray-500 hover:bg-gray-100 dark:text-white flex rounded-lg border dark:border-gray-700">
         <Input
+          id="title"
           ref={titleRef}
           className="dark:text-white rounded-none flex-1"
           placeholder="Enter a new todo item"
@@ -43,6 +44,7 @@ export default function AddTodo() {
           }}
         />
         <Button
+          id="create-todo"
           className="dark:text-white rounded-none w-20 h-10 text-gray-500 hover:bg-gray-100"
           variant="outline"
           onClick={() => handleSubmit()}

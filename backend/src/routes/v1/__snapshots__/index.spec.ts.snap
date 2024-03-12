@@ -1,0 +1,25 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todos PUT /todos/:id with string 1`] = `"{"success":false,"error":{"issues":[{"validation":"regex","code":"invalid_string","message":"Invalid","path":["id"]}],"name":"ZodError"}}"`;
+
+exports[`todos POST /todos with number 1`] = `
+{
+  "error": {
+    "issues": [
+      {
+        "code": "invalid_type",
+        "expected": "string",
+        "message": "Expected string, received number",
+        "path": [
+          "title",
+        ],
+        "received": "number",
+      },
+    ],
+    "name": "ZodError",
+  },
+  "success": false,
+}
+`;
+
+exports[`todos DELETE /todos/:id with string 1`] = `"{"success":false,"error":{"issues":[{"validation":"regex","code":"invalid_string","message":"Invalid","path":["id"]}],"name":"ZodError"}}"`;
