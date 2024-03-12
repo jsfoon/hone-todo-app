@@ -3,6 +3,7 @@ import { TrashIcon } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoInstance } from "@/lib/axios";
 import type { Todo } from "./types";
+import { spaceToUnderscore } from "@/lib/formatter";
 
 export default function TodoComponect({ todo }: { todo: Todo }) {
   const queryClient = useQueryClient();
@@ -15,9 +16,12 @@ export default function TodoComponect({ todo }: { todo: Todo }) {
   });
 
   return (
-    <li className="dark:text-white flex items-center space-x-2 ">
+    <li
+      className="dark:text-white flex items-center space-x-2 "
+      id={`todo_${spaceToUnderscore(todo.title)}`}
+    >
       <TrashIcon
-        className="w-4 h-4 dark:text-white hover:text-red-500 dark:hover:text-red-500"
+        className="w-4 h-4 dark:text-white hover:text-red-500 dark:hover:text-red-500 toggle"
         onClick={() => mutate()}
       />
       <label className="dark:text-white flex-1 text-left text-xl font-normal">
