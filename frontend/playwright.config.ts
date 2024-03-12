@@ -28,6 +28,8 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+    screenshot: "on",
+    video: "on",
   },
 
   /* Configure projects for major browsers */
@@ -74,7 +76,7 @@ export default defineConfig({
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
-  // globalTeardown: "./e2e/global-teardown.ts",
+  globalTeardown: "./e2e/global-teardown.ts",
   outputDir: "playwright-report/results/",
   reporter: [
     ["list"],

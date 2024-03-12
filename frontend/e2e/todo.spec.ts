@@ -14,13 +14,9 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3101/");
 });
 
-// test.afterAll(async ({ page }) => {
-//   const allToggles = await page.locator(".toggle").all();
-//   await Promise.all(
-//     allToggles.map(async (todo) => {
-//       await todo.click();
-//     })
-//   );
+// test.afterEach(async ({ page }) => {
+//   const toggles = await page.locator(".toggle").all();
+//   await Promise.all(toggles.map((toggle) => toggle.click()));
 // });
 
 test.describe("New Todo", () => {
@@ -36,6 +32,9 @@ test.describe("New Todo", () => {
     await newTodo.press("Enter");
 
     await expect(page.getByTestId(TODO_LIST)).toContainText([TODO_ITEMS[1]]);
+
+    const toggles = await page.locator(".toggle").all();
+    await Promise.all(toggles.map((toggle) => toggle.click()));
   });
 
   test("should clear text input field when an item is added", async ({

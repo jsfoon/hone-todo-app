@@ -6,9 +6,9 @@ const test = testBase.extend({
   autoTestFixture: [
     async ({ page }, use) => {
       // NOTE: it depends on your project name
-      const isChromium = test.info().project.name === "Desktop Chromium";
+      const isChromium = test.info().project.name === "chromium";
 
-      // console.log('autoTestFixture setup...');
+      // console.log("autoTestFixture setup...");
       // coverage API is chromium only
       if (isChromium) {
         await Promise.all([
@@ -30,6 +30,7 @@ const test = testBase.extend({
           page.coverage.stopCSSCoverage(),
         ]);
         const coverageList = [...jsCoverage, ...cssCoverage];
+        // console.log({ coverageList, info: test.info() });
         // console.log(coverageList.map((item) => item.url));
         await addCoverageReport(coverageList, test.info());
       }

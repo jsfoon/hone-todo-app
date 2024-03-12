@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "NODE_V8_COVERAGE=.coverage NODE_OPTIONS='--inspect=localhost:9230' vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test:e2e": "rm -rf .coverage/ playwright-report/.cache/ playwright-report/results/ && playwright test",
-    "test:report": "bunx monocart show-report playwright-report/results/report.html"
+    "test:ui": "playwright test --ui",
+    "test:report": "monocart show-report playwright-report/results/report.html"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.0.4",
